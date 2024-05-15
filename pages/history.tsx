@@ -126,8 +126,7 @@ export default function History() {
                     {voucher.map((item: { id: string, foto: string, nama: string, kategori: string, status: string }) => {
                       return (
                         <tr>
-
-                          <td>{item.nama}</td>
+                          <td><img src={'http://127.0.0.1:8000/img/' + item.foto} height={30} alt="" className="me-2" />{item.nama}</td>
                           <td>{item.kategori}</td>
                           <td><button onClick={() => remove(item.id)} className="btn btn-danger btn-sm  rounded-pill">Delete</button></td>
                         </tr>

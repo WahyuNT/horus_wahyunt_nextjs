@@ -147,7 +147,7 @@ export default function Home() {
               {voucher.map((item: { id: string, foto: string, nama: string, kategori: string, status: string }) => (
                 <div className="col-12 col-lg-4 p-0 m-0" key={item.id}>
                   <div className="card">
-                    <img className="img-voucher" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ1VuKA1bfF-J9EICmf9n4YvfTkXkhQb4Zln2kVXHZnw&s" alt="" />
+                    <img className="img-voucher" src={'http://127.0.0.1:8000/img/' + item.foto} alt="" />
                     <div className="d-flex justify-content-between mt-3 align-items-center">
                       <div className="col-9 d-flex flex-column">
                         <span className="m-0 p-0 fw-bold">{item.nama}</span>
