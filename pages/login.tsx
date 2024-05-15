@@ -45,8 +45,6 @@ export default function Login() {
                         <div className="d-flex">
                             <small className="mt-2 text-center">Belum punya akun? <a href="/register">Register</a></small>
                         </div>
-
-
                     </div>
                 </div>
             </div>

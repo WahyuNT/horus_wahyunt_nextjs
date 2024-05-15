@@ -14,6 +14,25 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function History() {
   const token = Cookies.get('jwt');
+  const remove = async (voucherId: string) => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/voucher/${voucherId}/remove`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        fetchData();
+      } else {
+      }
+    } catch (error) {
+      console.error('Terjadi kesalahan:', error);
+    }
+  };
+
   const fetchData = async () => {
     try {
       const responseVoucher = await axios.get('http://127.0.0.1:8000/api/history', {
@@ -69,16 +88,18 @@ export default function History() {
                     <tr>
                       <th scope="col">#</th>
                       <th scope="col">Voucher</th>
+                      <th scope="col">Kategori</th>
                       <th scope="col">Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {voucher.map((item: { _id: string, foto: string, nama: string, kategori: string, status: string }) => {
+                    {voucher.map((item: { id: string, foto: string, nama: string, kategori: string, status: string }) => {
                       return (
                         <tr>
-                          <th >1</th>
-                          <td>Mark</td>
-                          <td><button className="btn btn-danger btn-sm  rounded-pill">Delete</button></td>
+                          <th >{item.id}</th>
+                          <td>{item.nama}</td>
+                          <td>{item.kategori}</td>
+                          <td><button onClick={() => remove(item.id)} className="btn btn-danger btn-sm  rounded-pill">Delete</button></td>
                         </tr>
                       )
                     })}
