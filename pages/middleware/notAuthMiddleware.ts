@@ -1,9 +1,10 @@
 import { parseCookies, destroyCookie } from 'nookies';
-import Router from 'next/router';
+
+import { useRouter } from 'next/navigation'
 
 const notAuthMiddleware = (context :any) => {
   const cookies = parseCookies(context);
-
+  const Router = useRouter()
   // Periksa apakah ada token JWT dalam cookies
   const jwt = cookies.jwt;
 
