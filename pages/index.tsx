@@ -29,12 +29,13 @@ export default function Home() {
       if (response.ok) {
         fetchData();
       } else {
-        // Tangani kasus respons tidak berhasil jika diperlukan
+
       }
     } catch (error) {
       console.error('Terjadi kesalahan:', error);
     }
   };
+
   const fetchData = async () => {
     try {
       const responseVoucher = await axios.get('http://127.0.0.1:8000/api/get-voucher', {
@@ -42,18 +43,36 @@ export default function Home() {
           Authorization: `Bearer ${token}`,
         },
       });
-
       setVoucher(responseVoucher.data.data);
-
     } catch (error) {
-
     }
   };
 
+  const KategoriNum = async () => {
+    try {
+      const responseKategori = await axios.get('http://127.0.0.1:8000/api/kategori', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setKategori(responseKategori.data.data);
+    } catch (error) {
+    }
+  };
+
+  const handleLogout = () => {
+
+    Cookies.remove('jwt');
+
+    router.push('/login');
+  };
+
   const [voucher, setVoucher] = useState([]);
+  const [kategori, setKategori] = useState([]);
   useEffect(() => {
     checkAuth({} as NextPageContext);
     fetchData();
+    KategoriNum();
 
   }, []);
 
@@ -80,8 +99,34 @@ export default function Home() {
 
         <div className="d-flex justify-content-between mt-4">
           <div className="col-12 d-none d-lg-block  col-lg-3 p-0 ">
+            <div className="card sidebar shadow-none m-0 d-flex flex-column align-items-between  mb-3">
 
-            <Sidebar />
+              <h5 className="text-center fw-bold">Kategori Voucher</h5>
+              {kategori.map((item: { id: string, kategori: string, jumlah: string }) => (
+                <div className="div">
+                  <a href="/" className="text-decoration-none ">
+                    <div className="card card-sidebar-active shadow-none px-1 py-3 my-2 ">
+                      <div className="d-flex justify-content-between px-3">
+                        <div className="div">
+                          {item.kategori}
+                        </div>
+                        <div className="div">
+                          {item.jumlah}
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              ))}
+
+              <div className="d-flex justify-content-center mt-auto ">
+                <button onClick={handleLogout} className="btn btn-danger rounded-pill w-50 ">Log Out</button>
+              </div>
+
+
+            </div>
+
+
 
           </div>
           <div className="col-12 col-lg-9 ps-2">
