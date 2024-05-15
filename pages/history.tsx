@@ -28,6 +28,7 @@ export default function History() {
 
       if (response.ok) {
         fetchData();
+        KategoriNum();
       } else {
       }
     } catch (error) {
@@ -43,7 +44,7 @@ export default function History() {
         },
       });
       setVoucher(responseVoucher.data.data);
-      console.log('sasa');
+
     } catch (error) {
 
     }
@@ -82,7 +83,9 @@ export default function History() {
           <a className="navbar-brand" href="#">
             sasas
           </a>
-          Halaman Voucher
+          <h4 className="fw-bold">
+            History
+          </h4>
           <Link href={"/history"}>
 
             <button className="btn btn-info rounded-pill px-3">History</button>

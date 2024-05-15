@@ -16,6 +16,13 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   const router = useRouter();
   const token = Cookies.get('jwt');
+  const [valueFilter, setValueFilter] = useState('');
+  const handleFilterChange = (newValue: any) => {
+
+    setValueFilter(newValue);
+
+  };
+
   const Claim = async (voucherId: string) => {
     try {
       const response = await fetch(`http://127.0.0.1:8000/api/voucher/${voucherId}/claim`, {
@@ -28,6 +35,7 @@ export default function Home() {
 
       if (response.ok) {
         fetchData();
+        KategoriNum();
       } else {
 
       }
@@ -38,11 +46,12 @@ export default function Home() {
 
   const fetchData = async () => {
     try {
-      const responseVoucher = await axios.get('http://127.0.0.1:8000/api/get-voucher', {
+      const responseVoucher = await axios.get(`http://127.0.0.1:8000/api/get-voucher/${valueFilter}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+
       setVoucher(responseVoucher.data.data);
     } catch (error) {
     }
@@ -61,9 +70,7 @@ export default function Home() {
   };
 
   const handleLogout = () => {
-
     Cookies.remove('jwt');
-
     router.push('/login');
   };
 
@@ -74,7 +81,7 @@ export default function Home() {
     fetchData();
     KategoriNum();
 
-  }, []);
+  }, [valueFilter]);
 
 
 
@@ -83,9 +90,11 @@ export default function Home() {
       <nav className="navbar navbar-light bg-light">
         <div className="container">
           <a className="navbar-brand" href="#">
-            sasas
+            Voucher
           </a>
-          Halaman Voucher
+          <h4 className="fw-bold">
+            Halaman Voucher
+          </h4>
           <Link href={"/history"}>
             <button className="btn btn-info rounded-pill px-3">History</button>
           </Link>
@@ -103,21 +112,26 @@ export default function Home() {
 
               <h5 className="text-center fw-bold">Kategori Voucher</h5>
               {kategori.map((item: { id: string, kategori: string, jumlah: string }) => (
-                <div className="div">
-                  <a href="/" className="text-decoration-none ">
-                    <div className="card card-sidebar-active shadow-none px-1 py-3 my-2 ">
-                      <div className="d-flex justify-content-between px-3">
-                        <div className="div">
-                          {item.kategori}
-                        </div>
-                        <div className="div">
-                          {item.jumlah}
-                        </div>
+                <div className="" onClick={() => handleFilterChange(item.kategori)}>
+                  <div className={`card my-2 shadow-none px-1 py-3 ${valueFilter === item.kategori ? 'card-sidebar-active' : 'card-sidebar'}`}>
+                    <div className="d-flex justify-content-between px-3">
+                      <div className="div">
+                        {item.kategori}
+                      </div>
+                      <div className="div">
+                        {item.jumlah}
                       </div>
                     </div>
-                  </a>
+                  </div>
+
+
                 </div>
               ))}
+              <div className="d-flex justify-content-end py-3">
+
+                <button className="btn btn-warning btn-sm rounded-pill px-4" onClick={() => handleFilterChange('')}>Reset Filter</button>
+              </div>
+
 
               <div className="d-flex justify-content-center mt-auto ">
                 <button onClick={handleLogout} className="btn btn-danger rounded-pill w-50 ">Log Out</button>
@@ -148,7 +162,9 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
+
                 </div>
+
               ))}
 
             </div>
