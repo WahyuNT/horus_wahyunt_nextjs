@@ -28,7 +28,7 @@ export default function Home() {
       <div className="container">
 
         <div className="d-flex justify-content-between mt-4">
-          <div className="col-3 p-0 ">
+          <div className="col-12 d-none d-lg-block  col-lg-3 p-0 ">
             <div className="card sidebar shadow-none m-0 d-flex flex-column align-items-between  mb-3">
 
               <h5 className="text-center fw-bold">Kategori Voucher</h5>
@@ -82,11 +82,11 @@ export default function Home() {
 
             </div>
           </div>
-          <div className="col-9 ps-2">
+          <div className="col-12 col-lg-9 ps-2">
             <h4 className="ps-2 mb-0 fw-bold">List Voucher</h4>
             <div className="row flex-wrap">
 
-              <div className="col-4 p-0 m-0">
+              <div className="col-12 col-lg-4 p-0 m-0">
                 <div className="card ">
                   <img className="img-voucher" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ1VuKA1bfF-J9EICmf9n4YvfTkXkhQb4Zln2kVXHZnw&s" alt="" />
 
