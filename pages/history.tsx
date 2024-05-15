@@ -16,6 +16,10 @@ const inter = Inter({ subsets: ["latin"] });
 export default function History() {
   const router = useRouter();
   const token = Cookies.get('jwt');
+  const [valueFilter, setValueFilter] = useState('');
+  const handleFilterChange = (newValue: any) => {
+    setValueFilter(newValue);
+  };
   const remove = async (voucherId: string) => {
     try {
       const response = await fetch(`http://127.0.0.1:8000/api/voucher/${voucherId}/remove`, {
@@ -38,7 +42,7 @@ export default function History() {
 
   const fetchData = async () => {
     try {
-      const responseVoucher = await axios.get('http://127.0.0.1:8000/api/history', {
+      const responseVoucher = await axios.get(`http://127.0.0.1:8000/api/history/${valueFilter}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -75,7 +79,7 @@ export default function History() {
     checkAuth({} as NextPageContext);
     fetchData();
     KategoriNum();
-  }, []);
+  }, [valueFilter]);
   return (
     <>
       <nav className="navbar navbar-light bg-light">
@@ -112,7 +116,7 @@ export default function History() {
                 <table className="table table-bordered ">
                   <thead>
                     <tr>
-                      <th scope="col">#</th>
+
                       <th scope="col">Voucher</th>
                       <th scope="col">Kategori</th>
                       <th scope="col">Action</th>
@@ -122,7 +126,7 @@ export default function History() {
                     {voucher.map((item: { id: string, foto: string, nama: string, kategori: string, status: string }) => {
                       return (
                         <tr>
-                          <th >{item.id}</th>
+
                           <td>{item.nama}</td>
                           <td>{item.kategori}</td>
                           <td><button onClick={() => remove(item.id)} className="btn btn-danger btn-sm  rounded-pill">Delete</button></td>
@@ -141,22 +145,25 @@ export default function History() {
 
               <h5 className="text-center fw-bold">Kategori Voucher</h5>
               {kategori.map((item: { id: string, kategori: string, jumlah: string }) => (
-                <div className="div">
-                  <a href="/" className="text-decoration-none ">
-                    <div className="card card-sidebar-active shadow-none px-1 py-3 my-2 ">
-                      <div className="d-flex justify-content-between px-3">
-                        <div className="div">
-                          {item.kategori}
-                        </div>
-                        <div className="div">
-                          {item.jumlah}
-                        </div>
+                <div className="" onClick={() => handleFilterChange(item.kategori)}>
+                  <div className={`card my-2 shadow-none px-1 py-3 ${valueFilter === item.kategori ? 'card-sidebar-active' : 'card-sidebar'}`}>
+                    <div className="d-flex justify-content-between px-3">
+                      <div className="div">
+                        {item.kategori}
+                      </div>
+                      <div className="div">
+                        {item.jumlah}
                       </div>
                     </div>
-                  </a>
+                  </div>
+
+
                 </div>
               ))}
+              <div className="d-flex justify-content-center">
 
+                <button className="btn btn-sm btn-warning btn-sm rounded-pill px-4" onClick={() => handleFilterChange('')}>Reset Filter</button>
+              </div>
               <div className="d-flex justify-content-center mt-auto ">
                 <button onClick={handleLogout} className="btn btn-danger rounded-pill w-50 ">Log Out</button>
               </div>

@@ -18,9 +18,7 @@ export default function Home() {
   const token = Cookies.get('jwt');
   const [valueFilter, setValueFilter] = useState('');
   const handleFilterChange = (newValue: any) => {
-
     setValueFilter(newValue);
-
   };
 
   const Claim = async (voucherId: string) => {
@@ -127,7 +125,7 @@ export default function Home() {
 
                 </div>
               ))}
-              <div className="d-flex justify-content-end py-3">
+              <div className="d-flex justify-content-center py-3">
 
                 <button className="btn btn-warning btn-sm rounded-pill px-4" onClick={() => handleFilterChange('')}>Reset Filter</button>
               </div>
