@@ -12,16 +12,18 @@ export default function Sidebar() {
     }, []);
     const router = useRouter();
     const handleLogout = () => {
-        
-        Cookies.remove('jwt'); 
-       
+
+        Cookies.remove('jwt');
+
         router.push('/login');
     };
 
 
     return (
         <div >
-            <div className="card sidebar shadow-none m-0 d-flex flex-column align-items-between  mb-3">
+
+
+            <div className="card sidebar  shadow-none m-0 d-flex flex-column align-items-between  mb-3">
 
                 <h5 className="text-center fw-bold">Kategori Voucher</h5>
                 <div className="div">
@@ -73,6 +75,7 @@ export default function Sidebar() {
 
 
             </div>
+
         </div>
     )
 }

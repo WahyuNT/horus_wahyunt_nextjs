@@ -26,4 +26,6 @@ border: none;
 }
 .sidebar{
     height: 85vh;
+  
+    position: fixed;
 }

@@ -6,13 +6,32 @@ import Link from "next/link";
 import Sidebar from "./components/Sidebar";
 import checkAuth from "./middleware/authMiddleware";
 import { NextPageContext } from "next";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import Cookies from 'js-cookie';
+import axios from "axios";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+export default function History() {
+  const token = Cookies.get('jwt');
+  const fetchData = async () => {
+    try {
+      const responseVoucher = await axios.get('http://127.0.0.1:8000/api/history', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setVoucher(responseVoucher.data.data);
+      console.log('sasa');
+    } catch (error) {
+
+    }
+  };
+
+  const [voucher, setVoucher] = useState([]);
   useEffect(() => {
     checkAuth({} as NextPageContext);
+    fetchData();
   }, []);
   return (
     <>
@@ -54,11 +73,15 @@ export default function Home() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <th >1</th>
-                      <td>Mark</td>
-                      <td><button className="btn btn-danger btn-sm  rounded-pill">Delete</button></td>
-                    </tr>
+                    {voucher.map((item: { _id: string, foto: string, nama: string, kategori: string, status: string }) => {
+                      return (
+                        <tr>
+                          <th >1</th>
+                          <td>Mark</td>
+                          <td><button className="btn btn-danger btn-sm  rounded-pill">Delete</button></td>
+                        </tr>
+                      )
+                    })}
 
 
                   </tbody>
