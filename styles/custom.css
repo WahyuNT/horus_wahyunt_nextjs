@@ -36,3 +36,14 @@ body{
   
     /* position: fixed; */
 }
+.sidebar-mobile{
+    height: 80vh;
+ 
+  
+
+}
+.btn-bar{
+    background-color: transparent;
+    padding: 0%;
+
+}
