@@ -85,10 +85,11 @@ export default function Home() {
 
   return (
     <>
-      <nav className="navbar navbar-light bg-light">
+      <nav className="navbar  nav-voucher navbar-light bg-light">
         <div className="container d-flex align-items-center">
-          <a className="navbar-brand" href="#">
-            <div className=" d-none d-lg-block">
+          <a className="navbar-brand" href="/">
+            <div className=" d-none d-lg-block fw-bold">
+              <img src="/icon/icon.png" height={40} alt="" />
               Voucer App
             </div>
             <div className="d-lg-none d-block">
@@ -145,7 +146,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="container">
+      <div className="container mt-5 pt-4">
 
         <div className="d-flex justify-content-between mt-4">
           <div className="col-12 d-none d-lg-block  col-lg-3 p-0 ">
@@ -180,9 +181,6 @@ export default function Home() {
 
 
             </div>
-
-
-
           </div>
           <div className="col-12 col-lg-9 ps-2">
             <h4 className="ps-2 mb-0 fw-bold">List Voucher</h4>

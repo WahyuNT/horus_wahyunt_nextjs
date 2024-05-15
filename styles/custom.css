@@ -33,14 +33,19 @@ body{
 }
 .sidebar{
     height: 85vh;
-  
-    /* position: fixed; */
+  width: 20%;
+    position: fixed;
 }
 .sidebar-mobile{
     height: 80vh;
- 
-  
+}
+.nav-voucher{
+position: fixed;
+width: 100%;
+z-index: 1000;
+margin: 0;
 
+top: 0;
 }
 .btn-bar{
     background-color: transparent;

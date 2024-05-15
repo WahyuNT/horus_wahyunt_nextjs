@@ -82,10 +82,11 @@ export default function History() {
   }, [valueFilter]);
   return (
     <>
-      <nav className="navbar navbar-light bg-light">
+      <nav className="navbar  nav-voucher navbar-light bg-light">
         <div className="container d-flex align-items-center">
-          <a className="navbar-brand" href="#">
-            <div className=" d-none d-lg-block">
+          <a className="navbar-brand" href="/">
+            <div className=" d-none d-lg-block fw-bold">
+              <img src="/icon/icon.png" height={40} alt="" />
               Voucer App
             </div>
             <div className="d-lg-none d-block">
@@ -142,10 +143,10 @@ export default function History() {
           </div>
         </div>
       </div>
-      <div className="container">
+      <div className="container mt-5 pt-4">
 
         <div className="d-flex justify-content-between mt-4">
-          <div className="col-9 col-12">
+          <div className="col-lg-9 col-12">
             <div className="d-flex">
               <Link href={"/"}>
 
