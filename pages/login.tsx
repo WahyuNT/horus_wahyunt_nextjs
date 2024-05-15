@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
+import checkAuth from "./middleware/notAuthMiddleware";
+import { NextPageContext } from 'next';
 
 export default function Login() {
     const router = useRouter();
@@ -23,7 +25,9 @@ export default function Login() {
             setError('Invalid username or password');
         }
     };
-
+    useEffect(() => {
+        checkAuth({} as NextPageContext);
+      }, []);
     return (
         <>
             <div className="d-flex justify-content-center align-items-center ">

@@ -166,15 +166,16 @@ export default function History() {
                     </tr>
                   </thead>
                   <tbody>
-                    {voucher.map((item: { id: string, foto: string, nama: string, kategori: string, status: string }) => {
+                    {voucher.map((item: { id: string, voucher: { kategori: string, foto: string, nama: string }, status: string }) => {
                       return (
-                        <tr>
-                          <td><img src={'http://127.0.0.1:8000/img/' + item.foto} height={30} alt="" className="me-2" />{item.nama}</td>
-                          <td>{item.kategori}</td>
-                          <td><button onClick={() => remove(item.id)} className="btn btn-danger btn-sm  rounded-pill">Delete</button></td>
+                        <tr key={item.id}>
+                          <td><img src={'http://127.0.0.1:8000/img/' + item.voucher.foto} height={30} alt="" className="me-2" />{item.voucher.nama}</td>
+                          <td>{item.voucher.kategori}</td>
+                          <td><button onClick={() => remove(item.id)} className="btn btn-danger btn-sm rounded-pill">Delete</button></td>
                         </tr>
                       )
                     })}
+
 
 
                   </tbody>

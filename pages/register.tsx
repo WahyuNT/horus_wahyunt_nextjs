@@ -2,8 +2,9 @@
 import axios from "axios";
 import { Inter } from "next/font/google";
 import { useRouter } from "next/router";
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
+import checkAuth from "./middleware/notAuthMiddleware";
+import { NextPageContext } from 'next';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,7 +26,9 @@ export default function Register() {
             [id]: value,
         }));
     };
-
+    useEffect(() => {
+        checkAuth({} as NextPageContext);
+    }, []);
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
