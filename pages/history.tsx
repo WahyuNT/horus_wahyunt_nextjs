@@ -48,6 +48,7 @@ export default function History() {
         },
       });
       setVoucher(responseVoucher.data.data);
+      setTotal(responseVoucher.data.total);
 
     } catch (error) {
 
@@ -75,11 +76,12 @@ export default function History() {
 
   const [voucher, setVoucher] = useState([]);
   const [kategori, setKategori] = useState([]);
+  const [total, setTotal] = useState('');
   useEffect(() => {
     checkAuth({} as NextPageContext);
     fetchData();
     KategoriNum();
-  }, [valueFilter]);
+  }, [valueFilter, total]);
   return (
     <>
       <nav className="navbar  nav-voucher navbar-light bg-light">
@@ -130,6 +132,7 @@ export default function History() {
 
                 </div>
               ))}
+              <p className="text-center">Total : {total}</p>
               <div className="d-flex justify-content-center">
 
                 <button className="btn btn-sm btn-warning btn-sm rounded-pill px-4" onClick={() => handleFilterChange('')}>Reset Filter</button>
@@ -203,10 +206,12 @@ export default function History() {
 
                 </div>
               ))}
+              <p className="text-center">Total : {total}</p>
               <div className="d-flex justify-content-center">
 
                 <button className="btn btn-sm btn-warning btn-sm rounded-pill px-4" onClick={() => handleFilterChange('')}>Reset Filter</button>
               </div>
+
               <div className="d-flex justify-content-center mt-auto ">
                 <button onClick={handleLogout} className="btn btn-danger rounded-pill w-50 ">Log Out</button>
               </div>
