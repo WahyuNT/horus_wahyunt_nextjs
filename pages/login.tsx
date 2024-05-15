@@ -17,9 +17,9 @@ export default function Login() {
                 username,
                 password,
             });
-            const token = response.data.token; // assuming your API returns a token
+            const token = response.data.token; 
             Cookies.set('jwt', token, { expires: 7 });
-            // redirect to dashboard or any other route
+  
             router.push('/');
         } catch (error) {
             setError('Invalid username or password');

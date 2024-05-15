@@ -66,7 +66,7 @@ export default function Register() {
                                 <input required type="text" className="form-control" id="nama" value={formData.nama} onChange={handleChange} />
                             </div>
                             <div className="mb-3">
-                                <label htmlFor="tanggal_daftar" className="form-label">Nama</label>
+                                <label htmlFor="tanggal_daftar" className="form-label">Tangal Daftar</label>
                                 <input required type="date" className="form-control" id="tanggal_daftar" value={formData.tanggal_daftar} onChange={handleChange} />
                             </div>
                             <div className="d-flex justify-content-start my-3">

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import Link from "next/link";
-import Sidebar from "./components/Sidebar";
+
 import checkAuth from "./middleware/authMiddleware";
 import { NextPageContext } from "next";
 import { useState, useEffect } from "react";

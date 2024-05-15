@@ -1,10 +1,10 @@
 import { parseCookies, destroyCookie } from 'nookies';
-import { redirect } from 'next/navigation'
+import Router from 'next/router';
 
 const checkAuth = (context :any) => {
   const cookies = parseCookies(context);
 
-  // Periksa apakah ada token JWT dalam cookies
+
   const jwt = cookies.jwt;
 
   if (!jwt) {
@@ -13,7 +13,7 @@ const checkAuth = (context :any) => {
       context.res.writeHead(302, { Location: '/login' });
       context.res.end();
     } else {
-      redirect('/login')
+      Router.replace('/login');
     }
   }
 
