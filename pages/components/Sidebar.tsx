@@ -3,13 +3,19 @@ import Link from "next/link";
 import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
+import checkAuth from '../middleware/authMiddleware';
+import { NextPageContext } from 'next';
 
 export default function Sidebar() {
+    useEffect(() => {
+        checkAuth({} as NextPageContext);
+    }, []);
     const router = useRouter();
     const handleLogout = () => {
-        Cookies.remove('jwt'); // Menghapus cookie bernama 'jwt'
-        const router = useRouter();
-        router.push('/login'); // Mengarahkan pengguna kembali ke halaman login
+        
+        Cookies.remove('jwt'); 
+       
+        router.push('/login');
     };
 
 

@@ -3,10 +3,17 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import Link from "next/link";
+import Sidebar from "./components/Sidebar";
+import checkAuth from "./middleware/authMiddleware";
+import { NextPageContext } from "next";
+import { useEffect } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  useEffect(() => {
+    checkAuth({} as NextPageContext);
+  }, []);
   return (
     <>
       <nav className="navbar navbar-light bg-light">
@@ -16,8 +23,8 @@ export default function Home() {
           </a>
           Halaman Voucher
           <Link href={"/history"}>
-          
-          <button className="btn btn-info rounded-pill px-3">History</button>
+
+            <button className="btn btn-info rounded-pill px-3">History</button>
           </Link>
         </div>
       </nav>
@@ -60,58 +67,7 @@ export default function Home() {
             </div>
           </div>
           <div className="col-3 p-0 ">
-            <div className="card sidebar shadow-none m-0 d-flex flex-column align-items-between  mb-3">
-
-              <h5 className="text-center fw-bold">Voucher Terklaim</h5>
-              <div className="div">
-                <a href="/" className="text-decoration-none ">
-                  <div className="card card-sidebar-active shadow-none px-1 py-3 my-2 ">
-                    <div className="d-flex justify-content-between px-3">
-                      <div className="div">
-                        Fashion
-                      </div>
-                      <div className="div">
-                        18
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div className="div">
-
-                <a href="/" className="text-decoration-none  mt-0">
-                  <div className="card card-sidebar-active shadow-none px-1 py-3 my-2 ">
-                    <div className="d-flex justify-content-between px-3">
-                      <div className="div">
-                        Food
-                      </div>
-                      <div className="div">
-                        3
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div className="div">
-                <a href="/" className="text-decoration-none  mt-0">
-                  <div className="card card-sidebar-active shadow-none px-1 py-3 my-2 ">
-                    <div className="d-flex justify-content-between px-3">
-                      <div className="div">
-                        Electronic
-                      </div>
-                      <div className="div">
-                        3
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div className="d-flex justify-content-center mt-auto ">
-                <button className="btn btn-danger rounded-pill w-50 ">Log Out</button>
-              </div>
-
-
-            </div>
+            <Sidebar />
           </div>
 
         </div>

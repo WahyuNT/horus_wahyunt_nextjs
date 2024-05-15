@@ -3,12 +3,18 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import Link from "next/link";
-import Sidebar from "./components/sidebar";
+import Sidebar from "./components/Sidebar";
+import { useEffect } from "react";
+import checkAuth from "./middleware/authMiddleware";
+import { NextPageContext } from 'next';
 
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  useEffect(() => {
+    checkAuth({} as NextPageContext);
+  }, []);
   return (
     <>
       <nav className="navbar navbar-light bg-light">
@@ -18,7 +24,6 @@ export default function Home() {
           </a>
           Halaman Voucher
           <Link href={"/history"}>
-
             <button className="btn btn-info rounded-pill px-3">History</button>
           </Link>
         </div>
