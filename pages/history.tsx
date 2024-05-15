@@ -22,7 +22,7 @@ export default function History() {
   };
   const remove = async (voucherId: string) => {
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/voucher/${voucherId}/remove`, {
+      const response = await fetch(`https://be-horus.wahyunt.me/api/voucher/${voucherId}/remove`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ export default function History() {
 
   const fetchData = async () => {
     try {
-      const responseVoucher = await axios.get(`http://127.0.0.1:8000/api/history/${valueFilter}`, {
+      const responseVoucher = await axios.get(`https://be-horus.wahyunt.me/api/history/${valueFilter}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -57,7 +57,7 @@ export default function History() {
 
   const KategoriNum = async () => {
     try {
-      const responseKategori = await axios.get('http://127.0.0.1:8000/api/kategori-claim', {
+      const responseKategori = await axios.get('https://be-horus.wahyunt.me/api/kategori-claim', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -86,17 +86,20 @@ export default function History() {
     <>
       <nav className="navbar  nav-voucher navbar-light bg-light">
         <div className="container d-flex align-items-center">
-          <a className="navbar-brand" href="/">
+          <div className="navbar-brand" >
+            <Link href={"/"} className="text-decoration-none text-dark">
+            
             <div className=" d-none d-lg-block fw-bold">
               <img src="/icon/icon.png" height={40} alt="" />
               Voucer App
             </div>
+            </Link>
             <div className="d-lg-none d-block">
               <button className="btn btn-bar d-flex align-items-centeer" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <i className="fa-solid fa-bars fa-xl"></i>
               </button>
             </div>
-          </a>
+          </div>
           <h4 className="fw-bold d-none d-lg-block">
             History
           </h4>
@@ -172,7 +175,7 @@ export default function History() {
                     {voucher.map((item: { id: string, voucher: { kategori: string, foto: string, nama: string }, status: string }) => {
                       return (
                         <tr key={item.id}>
-                          <td><img src={'http://127.0.0.1:8000/img/' + item.voucher.foto} height={30} alt="" className="me-2" />{item.voucher.nama}</td>
+                          <td><img src={'https://be-horus.wahyunt.me/img/' + item.voucher.foto} height={30} alt="" className="me-2" />{item.voucher.nama}</td>
                           <td>{item.voucher.kategori}</td>
                           <td><button onClick={() => remove(item.id)} className="btn btn-danger btn-sm rounded-pill">Delete</button></td>
                         </tr>

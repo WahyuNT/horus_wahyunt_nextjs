@@ -33,7 +33,7 @@ export default function Register() {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/register-store', formData);
+            const response = await axios.post('https://be-horus.wahyunt.me/api/register-store', formData);
             router.push('/login');
         } catch (error: any) {
             console.log(error.response.data.errors);

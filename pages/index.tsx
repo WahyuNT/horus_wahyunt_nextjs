@@ -23,7 +23,7 @@ export default function Home() {
 
   const Claim = async (voucherId: string) => {
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/voucher/${voucherId}/claim`, {
+      const response = await fetch(`https://be-horus.wahyunt.me/api/voucher/${voucherId}/claim`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ export default function Home() {
 
   const fetchData = async () => {
     try {
-      const responseVoucher = await axios.get(`http://127.0.0.1:8000/api/get-voucher/${valueFilter}`, {
+      const responseVoucher = await axios.get(`https://be-horus.wahyunt.me/api/get-voucher/${valueFilter}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -57,7 +57,7 @@ export default function Home() {
 
   const KategoriNum = async () => {
     try {
-      const responseKategori = await axios.get('http://127.0.0.1:8000/api/kategori', {
+      const responseKategori = await axios.get('https://be-horus.wahyunt.me/api/kategori', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -87,17 +87,20 @@ export default function Home() {
     <>
       <nav className="navbar  nav-voucher navbar-light bg-light">
         <div className="container d-flex align-items-center">
-          <a className="navbar-brand" href="/">
+          <div className="navbar-brand" >
+          <Link href={"/"}  className="text-decoration-none text-dark">
+            
             <div className=" d-none d-lg-block fw-bold">
               <img src="/icon/icon.png" height={40} alt="" />
               Voucer App
             </div>
+            </Link>
             <div className="d-lg-none d-block">
               <button className="btn btn-bar d-flex align-items-centeer" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <i className="fa-solid fa-bars fa-xl"></i>
               </button>
             </div>
-          </a>
+          </div>
           <h4 className="fw-bold d-none d-lg-block">
             Beranda
           </h4>
@@ -188,7 +191,7 @@ export default function Home() {
               {voucher.map((item: { id: string, foto: string, nama: string, kategori: string, status: string }) => (
                 <div className="col-12 col-lg-4 p-0 m-0" key={item.id}>
                   <div className="card">
-                    <img className="img-voucher" src={'http://127.0.0.1:8000/img/' + item.foto} alt="" />
+                    <img className="img-voucher" src={'https://be-horus.wahyunt.me/img/' + item.foto} alt="" />
                     <div className="d-flex justify-content-between mt-3 align-items-center">
                       <div className="col-9 d-flex flex-column">
                         <span className="m-0 p-0 fw-bold">{item.nama}</span>

@@ -13,7 +13,7 @@ export default function Login() {
 
     const handleLogin = async () => {
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/login', {
+            const response = await axios.post('https://be-horus.wahyunt.me/api/login', {
                 username,
                 password,
             });
@@ -27,7 +27,7 @@ export default function Login() {
     };
     useEffect(() => {
         checkAuth({} as NextPageContext);
-      }, []);
+    }, []);
     return (
         <>
             <div className="d-flex justify-content-center align-items-center ">
@@ -45,7 +45,7 @@ export default function Login() {
                         <div className="d-flex justify-content-center ">
                             <button onClick={handleLogin} className="btn btn-primary rounded-pill px-3">Login</button>
                         </div>
-                        {error && <p>{error}</p>}
+                        {error && <p className='text-danger'>{error}</p>}
                         <div className="d-flex">
                             <small className="mt-2 text-center">Belum punya akun? <a href="/register">Register</a></small>
                         </div>
