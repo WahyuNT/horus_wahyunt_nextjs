@@ -88,12 +88,12 @@ export default function Home() {
       <nav className="navbar  nav-voucher navbar-light bg-light">
         <div className="container d-flex align-items-center">
           <div className="navbar-brand" >
-          <Link href={"/"}  className="text-decoration-none text-dark">
-            
-            <div className=" d-none d-lg-block fw-bold">
-              <img src="/icon/icon.png" height={40} alt="" />
-              Voucer App
-            </div>
+            <Link href={"/"} className="text-decoration-none text-dark">
+
+              <div className=" d-none d-lg-block fw-bold">
+                <img src="/icon/icon.png" height={40} alt="" />
+                Voucer App
+              </div>
             </Link>
             <div className="d-lg-none d-block">
               <button className="btn btn-bar d-flex align-items-centeer" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -200,6 +200,7 @@ export default function Home() {
                         </small>
                       </div>
                       <div className="col-3 text-end">
+                        
                         <button onClick={() => Claim(item.id)} className="btn btn-sm btn-success rounded-pill px-2">Claim</button>
                       </div>
                     </div>

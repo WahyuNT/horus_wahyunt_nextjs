@@ -43,6 +43,7 @@ export default function History() {
   const fetchData = async () => {
     try {
       const responseVoucher = await axios.get(`https://be-horus.wahyunt.me/api/history/${valueFilter}`, {
+        method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -88,11 +89,11 @@ export default function History() {
         <div className="container d-flex align-items-center">
           <div className="navbar-brand" >
             <Link href={"/"} className="text-decoration-none text-dark">
-            
-            <div className=" d-none d-lg-block fw-bold">
-              <img src="/icon/icon.png" height={40} alt="" />
-              Voucer App
-            </div>
+
+              <div className=" d-none d-lg-block fw-bold">
+                <img src="/icon/icon.png" height={40} alt="" />
+                Voucer App
+              </div>
             </Link>
             <div className="d-lg-none d-block">
               <button className="btn btn-bar d-flex align-items-centeer" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -172,12 +173,13 @@ export default function History() {
                     </tr>
                   </thead>
                   <tbody>
-                    {voucher.map((item: { id: string, voucher: { kategori: string, foto: string, nama: string }, status: string }) => {
+                    {voucher.map((item: { voucher: { kategori: string, foto: string, nama: string, id: string }, status: string }) => {
                       return (
-                        <tr key={item.id}>
+                        <tr key={item.voucher.id}>
                           <td><img src={'https://be-horus.wahyunt.me/img/' + item.voucher.foto} height={30} alt="" className="me-2" />{item.voucher.nama}</td>
                           <td>{item.voucher.kategori}</td>
-                          <td><button onClick={() => remove(item.id)} className="btn btn-danger btn-sm rounded-pill">Delete</button></td>
+
+                          <td><button onClick={() => remove(item.voucher.id)} className="btn btn-danger btn-sm rounded-pill">Delete</button></td>
                         </tr>
                       )
                     })}
